@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Canteen</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #loginSignupPage,
+    #homePage {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    #menu {
+      margin-top: 20px;
+    }
+
+    #orderForm {
+      margin-top: 20px;
+    }
+
+    #orderList {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>College Canteen</h1>
+  </header>
+
+  <!-- Login/Signup Page -->
+  <div id="loginSignupPage">
+    <h2>Login or Signup</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+    <p>Don't have an account? <a href="#" onclick="showSignup()">Signup</a></p>
+    <form id="signupForm" style="display:none;">
+      <label for="newUsername">New Username:</label>
+      <input type="text" id="newUsername" required>
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" required>
+      <button type="button" onclick="signup()">Signup</button>
+    </form>
+  </div>
+
+  <!-- Home Page -->
+  <div id="homePage" style="display:none;">
+    <h2>Welcome to the College Canteen</h2>
+    <div id="menu">
+      <!-- Food details and prices will be displayed here -->
+    </div>
+    <h3>Order Details</h3>
+    <form id="orderForm">
+      <label for="food">Select Food:</label>
+      <select id="food" required>
+        <!-- Options will be dynamically populated using JavaScript -->
+      </select>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" min="1" required>
+      <button type="button" onclick="addToOrder()">Add to Order</button>
+      <h4>Order Summary</h4>
+      <ul id="orderList"></ul>
+      <p>Total Bill: $<span id="totalBill">0.00</span></p>
+      <button type="button" onclick="placeOrder()">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript code for login, signup, and ordering functionality
+    // You can use a backend server for user authentication and food data
+
+    let selectedFoods = [];
+    let totalBill = 0;
+
+    function login() {
+      // Add your login logic here
+      // For simplicity, let's assume the login is successful
+      showHomePage();
+    }
+
+    function signup() {
+  
+      showHomePage();
+    }
+
+    function showSignup() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'block';
+    }
+
+    function showHomePage() {
+      document.getElementById('loginSignupPage').style.display = 'none';
+      document.getElementById('homePage').style.display = 'block';
+
+      const menu = document.getElementById('menu');
+     
+      const indianFoodItems = [
+        { name: 'Paneer Tikka', price: 8.99 },
+        { name: 'Chicken Biryani', price: 10.99 },
+        { name: 'Masala Dosa', price: 6.99 },
+        { name: 'Butter Chicken', price: 9.99 },
+        { name: 'Chole Bhature', price: 7.99 },
+        { name: 'Samosa', price: 2.99 },
+        { name: 'Palak Paneer', price: 8.49 },
+        { name: 'Tandoori Chicken', price: 11.99 },
+        { name: 'Aloo Paratha', price: 5.99 },
+        { name: 'Mango Lassi', price: 3.49 },
+      ];
+
+      indianFoodItems.forEach(item => {
+        const option = document.createElement('option');
+        option.text = `${item.name} - $${item.price.toFixed(2)}`;
+        option.value = JSON.stringify(item);
+        document.getElementById('food').add(option);
+      });
+    }
+
+    function addToOrder() {
+      const selectedFood = document.getElementById('food');
+      const foodDetails = JSON.parse(selectedFood.value);
+      const foodName = foodDetails.name;
+      const foodPrice = parseFloat(foodDetails.price);
+      const quantity = parseInt(document.getElementById('quantity').value);
+
+      const orderDetails = {
+        name: foodName,
+        price: foodPrice,
+        quantity: quantity,
+        total: (foodPrice * quantity * 1.10).toFixed(2), 
+      };
+
+      selectedFoods.push(orderDetails);
+      totalBill += parseFloat(orderDetails.total);
+
+      updateOrderDetails();
+    }
+
+    function updateOrderDetails() {
+      const orderList = document.getElementById('orderList');
+      orderList.innerHTML = '';
+
+      selectedFoods.forEach(order => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${order.quantity} x ${order.name} - $${order.total}`;
+        orderList.appendChild(listItem);
+      });
+
+      document.getElementById('totalBill').textContent = totalBill.toFixed(2);
+    }
+
+    function placeOrder() {
+      
+      showMessageBox();
+
+    
+      selectedFoods = [];
+      totalBill = 0;
+      updateOrderDetails();
+    }
+
+    function showMessageBox() {
+      const message = `Thank you for your order!\n\nOrder Details:\n${getOrderDetails()}\n\nTotal Bill: $${totalBill.toFixed(2)}`;
+
+      alert(message);
+    }
+
+    function getOrderDetails() {
+      return selectedFoods.map(order => `${order.quantity} x ${order.name} - $${order.total}`).join('\n');
+    }
+  </script>
+</body>
+</html>

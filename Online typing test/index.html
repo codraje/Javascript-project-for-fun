@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>Typing Test</title>
+</head>
+<body>
+    <div id="typing-test">
+        <div id="text-container">
+          <p id="text-to-type">The Hare & the Tortoise by Aesop. A Hare was making fun of the Tortoise one day for being so slow. “Do you ever get anywhere?” he asked with a mocking laugh.
+            “Yes,” replied the Tortoise, “and I get there sooner than you think. I'll run you a race and prove it.”
+            The Hare was much amused at the idea of running a race with the Tortoise, but for the fun of the thing he agreed. So the Fox, who had consented to act as judge, marked the distance and started the runners off.
+            The Hare was soon far out of sight, and to make the Tortoise feel very deeply how ridiculous it was for him to try a race with a Hare, he lay down beside the course to take a nap until the Tortoise should catch up.
+            The Tortoise meanwhile kept going slowly but steadily and, after a time, passed the place where the Hare was sleeping. But the Hare slept on very peacefully, and when at last he did wake up, the Tortoise was near the goal. The Hare now ran his swiftest, but he could not overtake the Tortoise in time.
+            The race does not always go to the swift.</p>
+          <div id="text-preview" class="shadow"></div>
+          <textarea id="user-input" placeholder="Start typing..." disabled></textarea>
+          <div id="buttons-container">
+            <button id="start-btn" onclick="startTest()">Start</button>
+            <button id="stop-btn" onclick="stopTest()" style="display: none;">Stop</button>
+            <button id="reset-btn" onclick="resetTest()" style="display: none;">Reset</button>
+          </div>
+    </div>
+    <div id="stats-container">
+        <p id="timer">Time: <span id="timer-value">0 s</span></p>
+        <p id="wpm">WPM: <span id="wpm-value">0</span></p>
+        <p id="wps">WPS: <span id="wps-value">0</span></p>
+        <p id="errors">Errors: <span id="errors-value">0</span></p>
+        <p id="gross-words">Gross Words: <span id="gross-words-value">0</span></p>
+        <p id="gwpm">GWPM: <span id="gwpm-value">0</span></p>
+        <p id="net-words">Net Words: <span id="net-words-value">0</span></p>
+        <p id="nwpm">NWPM: <span id="nwpm-value">0</span></p>
+        <p id="accuracy">Accuracy: <span id="accuracy-value">0.00%</span></p>
+    </div>
+  </div>
+</body>
+</html>

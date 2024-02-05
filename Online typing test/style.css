@@ -1,0 +1,107 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f8f8;
+  }
+  
+  #typing-test {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #text-container {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+  }
+  
+  #text-to-type {
+    max-width: 500px;
+    min=width: 200px;
+    max-height: 300px;
+    min-height: 100px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  #text-preview {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+  
+ 
+  
+  #reset-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #reset-btn:hover {
+    background-color: #45a049;
+  }
+  
+  #stats-container {
+    flex: 1;
+    padding: 20px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #timer, #wpm, #wps, #errors, #gross-words, #gwpm, #net-words, #nwpm, #accuracy {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  #timer-value, #wpm-value, #wps-value, #errors-value, #gross-words-value, #gwpm-value, #net-words-value, #nwpm-value, #accuracy-value {
+    font-weight: bold;
+    color: #333;
+  }
+
+#user-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  #start-btn, #stop-btn, #reset-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #start-btn:hover, #stop-btn:hover, #reset-btn:hover {
+    background-color: #45a049;
+  }
+  
+  
